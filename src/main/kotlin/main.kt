@@ -5,6 +5,7 @@ import ru.netology.WallService.add
 class Likes
 class Donut
 class Thread
+class PostNotFoundException : Exception()
 
 data class Post(
     var id: Int,
@@ -56,14 +57,18 @@ object WallService {
     // добавление возможности комментирования
     //Функция сначала должна проверить, существует ли в массиве posts пост с ID равным postId. Если существует, то добавить комментарий в массив comments и вернуть только что добавленный комментарий.
     // Если не существует, выкинуть исключение PostNotFoundException.
-    fun createComment(postId: Int, comment: Comment): Comment {
-        for (post in posts) {
-            if (post.id == postId) {
-                comments += comment
+    fun createComment(postId: Int, comment: Comment): Comment? {
+        try {
+            for (post in posts) {
+                if (post.id == postId) {
+                    comments += comment
+                }
                 return comment
             }
+        } catch (e: PostNotFoundException) {
+            println("PostNotFoundException")
         }
-        return TODO("PostNotFoundException")
+        return null
     }
 
     fun add(post: Post): Post {
@@ -161,7 +166,7 @@ class LinkAttachment(
 }
 
 fun main() {
-    var comment = Comment(1,2,3,"Com", Donut(), 1,1, Thread());
+    var comment = Comment(1, 2, 3, "Com", Donut(), 1, 1, Thread());
     var post =
         Post(1, 1, 1, 2, 1234, "Text", 3, 4, 1, "Ist", "post", 13, 1, true, 1, 1, true, false, 14, comment, Likes())
     println(add(post))
@@ -169,7 +174,7 @@ fun main() {
     WallService.createComment(2, comment)
 
 
-    comment = Comment(1,2,3,"Com", Donut(), 1,1, Thread());
+    comment = Comment(1, 2, 3, "Com", Donut(), 1, 1, Thread());
     post =
         Post(1, 2, 1, 2, 1234, "Text", 3, 4, 1, "Ist", "post", 13, 1, true, 1, 1, true, false, 14, comment, Likes())
     println(add(post))

@@ -16,7 +16,7 @@ class WallServiceTest {
     fun update() {
         // создаём целевой сервис
         val service = ru.netology.WallService
-        var comment = Comment(1,2,3,"Com", Donut(), 1,1, Thread());
+        var comment = Comment(1, 2, 3, "Com", Donut(), 1, 1, Thread());
         // заполняем несколькими постами
         service.add(
             Post(
@@ -129,7 +129,7 @@ class WallServiceTest {
     fun update1() {
         // создаём целевой сервис
         val service = ru.netology.WallService
-        var comment = Comment(1,2,3,"Com", Donut(), 1,1, Thread());
+        var comment = Comment(1, 2, 3, "Com", Donut(), 1, 1, Thread());
         // заполняем несколькими постами
         service.add(
             Post(
@@ -242,7 +242,7 @@ class WallServiceTest {
     fun add() {
         // создаём целевой сервис
         val service = ru.netology.WallService
-        var comment = Comment(1,2,3,"Com", Donut(), 1,1, Thread());
+        var comment = Comment(1, 2, 3, "Com", Donut(), 1, 1, Thread());
         // заполняем несколькими постами
         val result = service.add(
             Post(
@@ -277,7 +277,7 @@ class WallServiceTest {
     fun createComment1() {
         // создаём целевой сервис
         val service = ru.netology.WallService
-        var comment = Comment(1,2,3,"Com", Donut(), 1,1, Thread());
+        var comment = Comment(1, 2, 3, "Com", Donut(), 1, 1, Thread());
         // заполняем несколькими постами
         service.add(
             Post(
@@ -305,17 +305,18 @@ class WallServiceTest {
             )
         )
 
-        val result = if(service.createComment(1,comment) == comment) true else false
+        val result = if (service.createComment(1, comment) == comment) true else false
         assertTrue(result)
     }
 
-    class PostNotFoundException: Exception()
+    class PostNotFoundException : Exception()
+
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
         // здесь код с вызовом функции, которая должна выкинуть PostNotFoundException
         // создаём целевой сервис
         val service = ru.netology.WallService
-        var comment = Comment(1,2,3,"Com", Donut(), 1,1, Thread());
+        var comment = Comment(1, 2, 3, "Com", Donut(), 1, 1, Thread());
         // заполняем несколькими постами
         service.add(
             Post(
