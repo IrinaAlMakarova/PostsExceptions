@@ -1,9 +1,9 @@
+package ru.netology
+
 import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
-import ru.netology.*
-import ru.netology.Thread
 
 class WallServiceTest {
 
@@ -308,8 +308,6 @@ class WallServiceTest {
         val result = if (service.createComment(1, comment) == comment) true else false
         assertTrue(result)
     }
-
-    class PostNotFoundException : Exception()
 
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {

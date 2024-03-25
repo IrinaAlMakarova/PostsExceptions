@@ -57,18 +57,15 @@ object WallService {
     // добавление возможности комментирования
     //Функция сначала должна проверить, существует ли в массиве posts пост с ID равным postId. Если существует, то добавить комментарий в массив comments и вернуть только что добавленный комментарий.
     // Если не существует, выкинуть исключение PostNotFoundException.
-    fun createComment(postId: Int, comment: Comment): Comment? {
-        try {
-            for (post in posts) {
-                if (post.id == postId) {
-                    comments += comment
-                }
-                return comment
+    fun createComment(postId: Int, comment: Comment): Comment {
+        var flag = false
+        for (post in posts) {
+            if (post.id == postId) {
+                comments += comment
+                flag = true
             }
-        } catch (e: PostNotFoundException) {
-            println("PostNotFoundException")
         }
-        return null
+        if (flag) return comment else throw PostNotFoundException()
     }
 
     fun add(post: Post): Post {
